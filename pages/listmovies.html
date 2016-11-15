@@ -1,0 +1,71 @@
+<div id="TestController" >
+    <!--
+    <div class="clear">
+      <a ng-click="getAllPages()">TEST </a>
+      <a ng-click="previousPage()">previous </a>
+      <a ng-click="nextPage()">next </a>
+    </div>
+  -->
+<!-- VIDEO OVERLAY -->
+  <div class="hidden"  id="overlay">
+    <a id="close" ng-click=$event.preventDefault();close() >&#x274C;</a>
+    <div id="log"></div>
+    <div class="visible cssload-loader" id="loading"></div>
+    
+    <div class="video_container">
+      <video class="hidden"  id="video" ></video>
+      <div class="hidden" id="progress">
+          <div id="bar"></div>
+      </div>
+   </div>
+  </div>
+  <!-- FILTERS -->
+  <div class="filter_bar">
+    <div class="filters">
+    <!-- GENRE -->
+      <div class="list" id="genre">
+        <label ng-click="GenreOpen = !GenreOpen">Genre <span class="dropdown_title">{{genretitle}}</span><span class="caret"></span></label>
+        <ul ng-show="GenreOpen" class="scrollbar-inner" data-jquery-scrollbar="jqueryScrollbarOptions">
+          <li ng-repeat="genre in genreArray" ng-click="changegenre(genre , $index);" ng-class="{active: $index==selectedGenreIndex}">{{genre.title}}</li>
+        </ul>
+      </div>
+
+    <!-- SORT -->
+      <div  class="list" id="sort">
+        <label  ng-click="SortOpen = !SortOpen">Sort by <span class="dropdown_title">{{sorttitle}}</span><span class="caret"></span></label>
+        <ul ng-show="SortOpen" class="scrollbar-inner" data-jquery-scrollbar="jqueryScrollbarOptions">
+          <li ng-repeat="sort in sortArray" ng-click="changesort(sort , $index);" ng-class="{active: $index==selectedSortIndex}">{{sort.title}}</li>
+        </ul>
+      </div>
+    </div>
+  <!-- SEARCH -->
+    <div class="search">
+      <div class="input-group search-bar">
+        <input type="text" ng-model="search"  placeholder="Search a movie" />
+      </div>
+    </div>
+  </div>
+
+<!-- {{page}} -->
+<!-- CONTENT -->
+      <div  ng-init='loadPage()' id="bazinga">
+            <div  class="bubblah" ng-repeat="movie in movies">
+              <div class="thumbnail">
+                  <img class="portrait" err-src="img/error.png" ng-src="{{movie.medium_cover_image}}"/></img>
+                   
+                  <div class="overlay_img">
+                    <a class="torrent" ng-href="magnet:?xt=urn:btih:{{movie.torrents.0.hash}}&dn={{movie.title_long | encodeURIComponent}}&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&tr=wss%3A%2F%2Ftracker.webtorrent.io&tr=ws://84.192.201.65:35000/wstracker/vuze" ng-click=$event.preventDefault();go(movie.torrents.0.hash,movie.title_long)></a>
+                    <div class="rating-container">
+                      <div class="rating-box">
+                        <div class="rating" ng-style="{ 'width': getStars(movie.rating) }"></div>
+                      </div>  
+                      <div class="title rating-number"><p>{{movie.rating}}/10</p></div>
+                    </div>
+                </div>
+              </div>
+              <div class="title"><a href="#/detail/{{movie.id}}">{{movie.title}}</a></div> 
+              <div class="title_2"><p>{{movie.year}}</p> <!--<a class="imdb" href="https://www.imdb.com/title/{{movie.imdb_code}}">aaa</a>--></div>
+        </div>
+    </div>
+</div>
+

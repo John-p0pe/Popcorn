@@ -1,0 +1,38 @@
+<?php
+header("Access-Control-Allow-Methods: GET, POST");
+header("Access-Control-Allow-Headers: *");
+
+
+$errors = array();
+$data = array();
+$update = array();
+// Getting posted data and decodeing json
+$_POST = json_decode(file_get_contents('php://input'), true);
+
+// checking for blank values.
+if (empty($_POST['name']))
+  $errors['name'] = 'Country name is required.';
+
+if (empty($_POST['code']))
+  $errors['code'] = 'Country code is required.';
+
+if (!isset($_POST['population']) || !is_numeric($_POST['population']))
+  $errors['population'] = 'Population is required and has to be numeric.';
+
+if (!empty($errors)) {
+  $data['errors']  = $errors;
+} else {
+  $data['message'] = 'Form data is going well';
+  $update['name'] = $_POST['name'];
+  $update['code'] = $_POST['code'];
+  $update['population'] = $_POST['population'];
+
+  $inp = file_get_contents('country_codes.json');
+  $tempArray = json_decode($inp, true);
+  array_push($tempArray, $update);
+  $jsonData = json_encode($tempArray);
+  file_put_contents('country_codes.json', $jsonData);
+}
+// response back.
+echo json_encode($data);
+?>

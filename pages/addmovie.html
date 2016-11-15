@@ -1,0 +1,22 @@
+<div ng-controller="postController">
+    <h2>Add a Movie</h2>
+    <form  name="userForm" ng-submit="submitForm()">
+      <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" ng-model="addmovies.name">
+          <span ng-show="errorName">{{errorName}}</span>
+      </div>
+      <div class="form-group">
+          <label>Country code</label>
+          <input type="text" name="code" class="form-control" ng-model="addmovies.code">
+          <span ng-show="errorCode">{{errorCode}}</span>
+      </div>
+      <div class="form-group">
+          <label>Population</label>
+          <input type="text" name="population" class="form-control" ng-model="addmovies.population">
+          <span ng-show="errorPopulation">{{errorPopulation}}</span>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {{message}}
+    </div>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="Movie" >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+  <title>Popcorn</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/jquery.scrollbar.css" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css" />
+  <script type='text/javascript' src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script type='text/javascript' src="Movie.js"></script>
+  <script type='text/javascript' src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script> 
+  <script type='text/javascript' src="js/jquery.scrollbar.min.js"></script>
+    
+
+
+</head>
+<body >
+    <div id="graph" > </div>
+    <div class="container" ng-app="App"> 
+      <div ng-view></div>
+    </div>
+  <script>      
+    var client = new WebTorrent(); 
+    $(document).ready(function() {
+      
+        window.graph.add({ id: 'You', name: 'You', me: true }); 
+        $("#graph").hide();       
+    });
+   
+  </script>
+  <script type='text/javascript' src="js/bundle.js"></script>   
+</body>
+</html>

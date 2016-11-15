@@ -1,0 +1,26 @@
+<div id="TestDetailController" ng-init='loadDetailPage()'>
+ {{moviedetail}}
+
+<!--       {{page}}
+       {{users}}
+       -->
+       <h2 class="title">{{moviedetail.title}}</h2>
+       <p> {{moviedetail.year}} - {{moviedetail.runtime}} min -  <span ng-repeat="genre in moviedetail.genres">{{genre}}/</span> </p>
+       <div><a href="https://www.imdb.com/title/{{movie.imdb_code}}"></a></div>
+       <div>{{moviedetail.rating}} </div>
+       <p>{{moviedetail.description_full</p>
+       <div> <img class="portrait" ng-src="{{moviedetail.large_cover_image}}"/></img> </div>
+       <div ng-repeat="cast in moviedetail.cast">
+       		<p>{{cast.name}} </p>
+       		<img class="portrait" ng-src="{{cast.url_small_image}}"/></img>
+        </div>
+        <div>
+        	{{moviedetail.description_full}}
+        </div>
+        <div class="clear" id="quality">
+		    <label >Quality</label>
+		    <select  ng-model="quality" ng-options="x.hash as x.quality for x in moviedetail.torrents" )>
+		    </select>
+  	    </div>
+   
+</div>
